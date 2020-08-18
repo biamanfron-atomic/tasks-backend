@@ -1,13 +1,13 @@
-pipeline{
+pipeline {
     agent any
-    stages{
-        stage ('Build Backend'){
-            steps{
+    stages {
+        stage ('Build Backend') {
+            steps {
                 bat 'mvn clean package -DskipTests=true'
             }
         }
-        stage ('Unit Tests'){
-            steps{
+        stage ('Unit Tests') {
+            steps {
                 bat 'mvn test'
             }
         }
@@ -30,16 +30,18 @@ pipeline{
 //            }
 //        }
         stage ('Deploy Backend') {
-            steps{
+            steps {
                 deploy adapters: [tomcat8(credentialsId: 'TomcatLogin', path: '', url: 'http://localhost:8001/')], contextPath: 'tasks-backend', war: 'target/tasks-backend.war'
 
             }
         }
 
         stage ('API Test') {
-            steps{
-                git credentialsId: 'github_login', url: 'https://github.com/biamanfron-atomic/tasks-api-test'
-                bat 'mvn test'
+            steps {
+                dir('api-test') {
+                    git credentialsId: 'github_login', url: 'https://github.com/biamanfron-atomic/tasks-api-test'
+                    bat 'mvn test'
+                }
             }
         }
     }
