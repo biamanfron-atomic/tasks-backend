@@ -6,11 +6,11 @@ pipeline {
                 bat 'mvn clean package -DskipTests=true'
             }
         }
-//         stage ('Unit Tests') {
-//             steps {
-//                 bat 'mvn test'
-//             }
-//         }
+        stage ('Unit Tests') {
+            steps {
+                bat 'mvn test'
+            }
+        }
 //        stage ('Sonar Analysis'){
 //            environment{
 //                scannerHome = tool 'SONAR_SCANNER'
