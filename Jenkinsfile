@@ -25,15 +25,15 @@ pipeline {
            steps{
                sleep(30)
                timeout(time: 1, unit: 'MINUTES'){
-                   waitForQualityGate abortPipeline 2: true
+                   waitForQualityGate abortPipeline: true
                }
            }
        }
-//         stage ('Deploy Backend') {
-//             steps {
-//                 deploy adapters: [tomcat8(credentialsId: 'TomcatLogin', path: '', url: 'http://localhost:8001/')], contextPath: 'tasks-backend', war: 'target/tasks-backend.war'
-//             }
-//         }
+        // stage ('Deploy Backend') {
+        //     steps {
+        //         deploy adapters: [tomcat8(credentialsId: 'TomcatLogin', path: '', url: 'http://localhost:8001/')], contextPath: 'tasks-backend', war: 'target/tasks-backend.war'
+        //     }
+        // }
 //         stage ('API Test') {
 //             steps {
 //                 dir('api-test') {
