@@ -34,14 +34,14 @@ pipeline {
                 deploy adapters: [tomcat8(credentialsId: 'TomcatLogin', path: '', url: 'http://localhost:8001/')], contextPath: 'tasks-backend', war: 'target/tasks-backend.war'
             }
         }
-//         stage ('API Test') {
-//             steps {
-//                 dir('api-test') {
-//                     git credentialsId: 'github_login', url: 'https://github.com/biamanfron-atomic/tasks-api-test'
-//                     bat 'mvn test'
-//                 }
-//             }
-//         }
+        stage ('API Test') {
+            steps {
+                dir('api-test') {
+                    git credentialsId: 'github_login', url: 'https://github.com/biamanfron-atomic/tasks-api-test'
+                    bat 'mvn test'
+                }
+            }
+        }
 //         stage ('Deploy Frontend') {
 //             steps {
 //                 dir('frontend') {
