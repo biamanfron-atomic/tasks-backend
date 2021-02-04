@@ -65,21 +65,21 @@ pipeline {
                 bat 'docker-compose up -d'
             }
         }
-//         stage ('Health Check') {
-//             steps {
-//                 sleep(5)
-//                 dir('functional-test') {
-//                    git credentialsId: 'github_login', url: 'https://github.com/biamanfron-atomic/tasks-functional-tests'
-//                    bat 'mvn verify -Dskip.surefire.tests' 
-//                 }
-//             }
-//         }
-//     }
+        stage ('Health Check') {
+            steps {
+                sleep(5)
+                dir('functional-test') {
+                   git credentialsId: 'github_login', url: 'https://github.com/biamanfron-atomic/tasks-functional-tests'
+                   bat 'mvn verify -Dskip.surefire.tests' 
+                }
+            }
+        }
+    }
 //     post {
 //         always {
 //             junit allowEmptyResults: true, testResults: 'target/surefire-reports/*.xml, api-test/target/surefire-reports/*.xml, functional-test/target/failsafe-reports/*.xml'
 //             archiveArtifacts artifacts: 'target/tasks-backend.war, frontend/target/tasks.war', onlyIfSuccessful: true
 //         }
-    }
+//   }
 }
 
