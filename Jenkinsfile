@@ -67,7 +67,7 @@ pipeline {
         }
         stage ('Health Check') {
             steps {
-                sleep(30)
+                sleep(45)
                 dir('functional-test') {
                    //git credentialsId: 'github_login', url: 'https://github.com/biamanfron-atomic/tasks-functional-tests'
                    bat 'mvn verify -Dskip.surefire.tests' 
